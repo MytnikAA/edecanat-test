@@ -59,10 +59,10 @@ public class StudentsRequestTest {
     @Test
     public void testGetSqlWhereFragment() throws SQLException {
         System.out.println("getSqlWhereFragment");
-        StudentsRequest instance = new StudentsRequest("select * from t", null);
+        StudentsRequest instance = new StudentsRequest(StudentsRequest.By.ACTIVE, null);
         instance.add(Restrictions.like("FIO", "Пупкин"));
         instance.add(Restrictions.gt("SKURS", "8"));
-        String expResult = " WHERE  (FIO LIKE 'Пупкин%')  AND  (SKURS > '8') ";
+        String expResult = " WHERE  (FIO LIKE '%Пупкин%')  AND  (SKURS > '8') ";
         System.out.println(instance.getSql());
         System.out.println(instance.getSqlWhereFragment());
         System.out.println(expResult);
